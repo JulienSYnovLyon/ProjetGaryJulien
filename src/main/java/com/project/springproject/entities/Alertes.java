@@ -18,13 +18,13 @@ public class Alertes {
     @NotBlank
     private Long idAlertes;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "idUsers")
-    private List<User> usersGetAlerts = new ArrayList<User>();
+    @ManyToOne
+    @JoinColumn(name = "idUsers1")
+    private User users1;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "idUsers")
-    private List<User> usersSendAlerts = new ArrayList<User>();
+    @ManyToOne
+    @JoinColumn(name = "idUsers2")
+    private User users2;
 
     public Long getIdAlertes() {
         return idAlertes;
@@ -34,19 +34,19 @@ public class Alertes {
         this.idAlertes = idAlertes;
     }
 
-    public List<User> getUsersGetAlerts() {
-        return usersGetAlerts;
+    public User getUsers2() {
+        return users2;
     }
 
-    public void setUsersGetAlerts(List<User> usersGetAlerts) {
-        this.usersGetAlerts = usersGetAlerts;
+    public void setUsers2(User users2) {
+        this.users2 = users2;
     }
 
-    public List<User> getUsersSendAlerts() {
-        return usersSendAlerts;
+    public User getUsers1() {
+        return users1;
     }
 
-    public void setUsersSendAlerts(List<User> usersSendAlerts) {
-        this.usersSendAlerts = usersSendAlerts;
+    public void setUsers1(User users1) {
+        this.users1 = users1;
     }
 }
