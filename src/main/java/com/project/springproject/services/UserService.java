@@ -1,7 +1,9 @@
 package com.project.springproject.services;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.project.springproject.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +20,13 @@ public class UserService  {
 	public User createOrUpdate(User user) {
 		return userRepository.save(user);
 	}
-	public User getUserById(Long username) {
-		return userRepository.findById(username).orElse(null);
+
+	public User getUserById(Long username) throws ResourceNotFoundException {
+		Optional<User> user = userRepository.findById(username);
+		if (user.isPresent()) {
+			return user.get();
+		}
+		throw new ResourceNotFoundException(User.class, username);
 	}
 
 	public List<User> getAllUsers() {

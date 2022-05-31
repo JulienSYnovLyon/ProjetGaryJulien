@@ -2,6 +2,8 @@ package com.project.springproject.controller;
 
 import java.util.List;
 
+import com.project.springproject.exceptions.ResourceNotFoundException;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +18,8 @@ import com.project.springproject.services.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -24,11 +28,14 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping(path = "/{id_users}", method = RequestMethod.GET)
-	public User get(@PathVariable(name = "id_users") Long username) {
+	public User get(@PathVariable(name = "id_users") Long username) throws ResourceNotFoundException {
 		return userService.getUserById(username);
 	}
+
+	@Operation(summary = "Récupération d'un utilisateur à partir de son identifiant")
+	@ApiResponse(responseCode = "404", description = "Utilisateur non trouvé")
 	@RequestMapping(method = RequestMethod.PUT)
-	public User createOrUpdate(@RequestBody User user) {
+	public User createOrUpdate(@RequestBody @Valid User user) {
 		return userService.createOrUpdate(user);
 	}
 

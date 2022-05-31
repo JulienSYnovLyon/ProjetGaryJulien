@@ -21,7 +21,7 @@ public class ResourceNotFoundException extends Exception{
     }
 
     public ResourceNotFoundException(Class<?> resourceType, Object resourceId) {
-        super(resourceType.getSimpleName() + " " + resourceId + " not found");
+        super("<center><h1 style=\"color: red\">" + resourceType.getSimpleName() + " " + resourceId + " not found</h1></center>");
     }
 
 }
