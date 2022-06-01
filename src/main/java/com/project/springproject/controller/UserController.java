@@ -7,11 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.project.springproject.entities.User;
 import com.project.springproject.services.UserService;
@@ -54,5 +50,13 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.GET)
 	public Page<User> getUsers(Pageable pageable) {
 		return userService.getUsersWithPaging(pageable);
+	}
+
+	@Operation(summary = "Mise à jour du mot de passe d'un utilisateur")
+	@RequestMapping(path = "/update-password", method = RequestMethod.GET)
+	public void setPassword(@RequestParam(value = "id_users") String userName,
+							@RequestParam(value = "password") String newPassword) throws
+			IllegalAccessException {
+		userService.setPassword(userName, newPassword);
 	}
 }
