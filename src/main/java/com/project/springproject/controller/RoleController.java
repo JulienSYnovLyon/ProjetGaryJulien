@@ -20,15 +20,16 @@ public class RoleController {
     @Autowired
     private RolesService roleService;
 
+    @Operation(summary = "Récupération d'un role à partir de son identifiant")
+    @ApiResponse(responseCode = "404", description = "Role non trouvé")
     @RequestMapping(path = "/{id_role}", method = RequestMethod.GET)
     public Roles get(@PathVariable(name = "id_role") Short id) throws ResourceNotFoundException {
         return roleService.getUserById(id);
     }
 
-    @Operation(summary = "Récupération d'un role à partir de son identifiant")
-    @ApiResponse(responseCode = "404", description = "Role non trouvé")
     @RequestMapping(method = RequestMethod.PUT)
-    public Roles createOrUpdate(@RequestBody @Valid Roles role) {
+    @Operation(summary = "Modification ou ajout d'un role")
+    public Roles createOrUpdate(@RequestBody @Valid Roles role){
         return roleService.createOrUpdate(role);
     }
 

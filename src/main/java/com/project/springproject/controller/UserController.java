@@ -27,15 +27,16 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Operation(summary = "Récupération d'un utilisateur à partir de son identifiant")
+	@ApiResponse(responseCode = "404", description = "Utilisateur non trouvé")
 	@RequestMapping(path = "/{id_users}", method = RequestMethod.GET)
 	public User get(@PathVariable(name = "id_users") Long username) throws ResourceNotFoundException {
 		return userService.getUserById(username);
 	}
 
-	@Operation(summary = "Récupération d'un utilisateur à partir de son identifiant")
-	@ApiResponse(responseCode = "404", description = "Utilisateur non trouvé")
+	@Operation(summary = "Modification ou ajout d'un utilisateur")
 	@RequestMapping(method = RequestMethod.PUT)
-	public User createOrUpdate(@RequestBody @Valid User user) {
+	public User createOrUpdate(@RequestBody @Valid User user){
 		return userService.createOrUpdate(user);
 	}
 

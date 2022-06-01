@@ -19,6 +19,10 @@ public class Alertes {
     private Long idAlertes;
 
     @ManyToOne
+    @JoinColumn(name = "idAnnonces")
+    private Annonces annonces;
+
+    @ManyToOne
     @JoinColumn(name = "idUsers1")
     private User users1;
 
@@ -32,6 +36,14 @@ public class Alertes {
 
     public void setIdAlertes(Long idAlertes) {
         this.idAlertes = idAlertes;
+    }
+
+    public Annonces getAnnonces() {
+        return annonces;
+    }
+
+    public void setAnnonces(Annonces annonces) {
+        this.annonces = annonces;
     }
 
     public User getUsers2() {

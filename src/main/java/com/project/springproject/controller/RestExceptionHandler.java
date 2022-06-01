@@ -1,7 +1,7 @@
 package com.project.springproject.controller;
 
 import com.project.springproject.exceptions.ResourceNotFoundException;
-import com.project.springproject.tdo.ValidationError;
+import com.project.springproject.dto.ValidationError;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
