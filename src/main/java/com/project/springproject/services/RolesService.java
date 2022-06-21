@@ -21,7 +21,7 @@ public class RolesService {
         return roleRepository.save(roles);
     }
 
-    public Roles getUserById(Short id) throws ResourceNotFoundException {
+    public Roles getRoleById(Short id) throws ResourceNotFoundException {
         Optional<Roles> roles = roleRepository.findById(id);
         if (roles.isPresent()) {
             return roles.get();
@@ -29,15 +29,15 @@ public class RolesService {
         throw new ResourceNotFoundException(Roles.class, id);
     }
 
-    public List<Roles> getAllUsers() {
+    public List<Roles> getAllRoles() {
         return roleRepository.findAll();
     }
 
-    public Page<Roles> getUsersWithPaging(Pageable pageable) {
+    public Page<Roles> getRoleWithPaging(Pageable pageable) {
         return roleRepository.findAll(pageable);
     }
 
-    public void deleteUser(String rolename) {
+    public void deleteRole(String rolename) {
         roleRepository.deleteById(Short.valueOf(rolename));
     }
 }

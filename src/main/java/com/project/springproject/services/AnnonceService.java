@@ -21,7 +21,7 @@ public class AnnonceService {
         return annoncesRepository.save(annonces);
     }
 
-    public Annonces getUserById(Long annonces) throws ResourceNotFoundException {
+    public Annonces getAnnonceById(Long annonces) throws ResourceNotFoundException {
         Optional<Annonces> annonce = annoncesRepository.findById(annonces);
         if (annonce.isPresent()) {
             return annonce.get();
@@ -29,15 +29,15 @@ public class AnnonceService {
         throw new ResourceNotFoundException(Annonces.class, annonces);
     }
 
-    public List<Annonces> getAllUsers() {
+    public List<Annonces> getAllAnonces() {
         return annoncesRepository.findAll();
     }
 
-    public Page<Annonces> getUsersWithPaging(Pageable pageable) {
+    public Page<Annonces> getAnoncesWithPaging(Pageable pageable) {
         return annoncesRepository.findAll(pageable);
     }
 
-    public void deleteUser(String username) {
+    public void deleteAnnonce(String username) {
         annoncesRepository.deleteById(Long.valueOf(username));
     }
 }

@@ -21,7 +21,7 @@ public class TypeAnnonceService {
         return typeAnnoncesRepository.save(user);
     }
 
-    public TypeAnnonce getUserById(Short typeAnnonce) throws ResourceNotFoundException {
+    public TypeAnnonce getTypeAnnonceById(Short typeAnnonce) throws ResourceNotFoundException {
         Optional<TypeAnnonce> typeAnnonces = typeAnnoncesRepository.findById(typeAnnonce);
         if (typeAnnonces.isPresent()) {
             return typeAnnonces.get();
@@ -29,15 +29,15 @@ public class TypeAnnonceService {
         throw new ResourceNotFoundException(TypeAnnonce.class, typeAnnonce);
     }
 
-    public List<TypeAnnonce> getAllUsers() {
+    public List<TypeAnnonce> getTypeAnnonceUsers() {
         return typeAnnoncesRepository.findAll();
     }
 
-    public Page<TypeAnnonce> getUsersWithPaging(Pageable pageable) {
+    public Page<TypeAnnonce> getTypeAnnonceWithPaging(Pageable pageable) {
         return typeAnnoncesRepository.findAll(pageable);
     }
 
-    public void deleteUser(String username) {
+    public void deleteType(String username) {
         typeAnnoncesRepository.deleteById(Short.valueOf(username));
     }
 }

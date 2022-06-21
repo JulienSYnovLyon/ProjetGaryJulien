@@ -21,7 +21,7 @@ public class AlerteService {
         return alertesRepository.save(alertes);
     }
 
-    public Alertes getUserById(Long alerte) throws ResourceNotFoundException {
+    public Alertes getAlerteById(Long alerte) throws ResourceNotFoundException {
         Optional<Alertes> alertes = alertesRepository.findById(alerte);
         if (alertes.isPresent()) {
             return alertes.get();
@@ -29,15 +29,15 @@ public class AlerteService {
         throw new ResourceNotFoundException(Alertes.class, alerte);
     }
 
-    public List<Alertes> getAllUsers() {
+    public List<Alertes> getAllAlertes() {
         return alertesRepository.findAll();
     }
 
-    public Page<Alertes> getUsersWithPaging(Pageable pageable) {
+    public Page<Alertes> getAlerteWithPaging(Pageable pageable) {
         return alertesRepository.findAll(pageable);
     }
 
-    public void deleteUser(String username) {
+    public void deleteAlerte(String username) {
         alertesRepository.deleteById(Long.valueOf(username));
     }
 }

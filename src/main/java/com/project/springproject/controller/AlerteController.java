@@ -24,7 +24,7 @@ public class AlerteController {
     @ApiResponse(responseCode = "404", description = "Alerte non trouvé")
     @RequestMapping(path = "/{id_alertes}", method = RequestMethod.GET)
     public Alertes get(@PathVariable(name = "id_alertes") Long alerte) throws ResourceNotFoundException {
-        return alerteService.getUserById(alerte);
+        return alerteService.getAlerteById(alerte);
     }
 
     @Operation(summary = "Modification ou ajout d'une alerte")
@@ -35,17 +35,17 @@ public class AlerteController {
 
     @Operation(summary = "Récupération de toutes les annonces")
     @RequestMapping(path = "/_all", method = RequestMethod.GET)
-    public List<Alertes> getAllUsers() {
-        return alerteService.getAllUsers();
+    public List<Alertes> getAllAlertes() {
+        return alerteService.getAllAlertes();
     }
 
     @RequestMapping(path = "/{id_alertes}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable(name = "id_alertes") String username) {
-        alerteService.deleteUser(username);
+    public void deleteAlerte(@PathVariable(name = "id_alertes") String username) {
+        alerteService.deleteAlerte(username);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<Alertes> getUsers(Pageable pageable) {
-        return alerteService.getUsersWithPaging(pageable);
+    public Page<Alertes> getAlertes(Pageable pageable) {
+        return alerteService.getAlerteWithPaging(pageable);
     }
 }

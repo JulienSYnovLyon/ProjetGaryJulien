@@ -24,7 +24,7 @@ public class TypeAnnonceController {
     @ApiResponse(responseCode = "404", description = "Type d'annonce non trouvé")
     @RequestMapping(path = "/{id_typeannonce}", method = RequestMethod.GET)
     public TypeAnnonce get(@PathVariable(name = "id_typeannonce") Short type) throws ResourceNotFoundException {
-        return typeAnnonceService.getUserById(type);
+        return typeAnnonceService.getTypeAnnonceById(type);
     }
 
     @Operation(summary = "Modification ou ajout d'un type d'annonce")
@@ -35,17 +35,17 @@ public class TypeAnnonceController {
 
     @Operation(summary = "Récupération de tous les type d'annonces")
     @RequestMapping(path = "/_all", method = RequestMethod.GET)
-    public List<TypeAnnonce> getAllUsers() {
-        return typeAnnonceService.getAllUsers();
+    public List<TypeAnnonce> getAllTypeAnnonces() {
+        return typeAnnonceService.getTypeAnnonceUsers();
     }
 
     @RequestMapping(path = "/{id_typeannonce}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable(name = "id_typeannonce") String type) {
-        typeAnnonceService.deleteUser(type);
+    public void deleteType(@PathVariable(name = "id_typeannonce") String type) {
+        typeAnnonceService.deleteType(type);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<TypeAnnonce> getUsers(Pageable pageable) {
-        return typeAnnonceService.getUsersWithPaging(pageable);
+    public Page<TypeAnnonce> getTypeAnnonces(Pageable pageable) {
+        return typeAnnonceService.getTypeAnnonceWithPaging(pageable);
     }
 }

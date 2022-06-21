@@ -24,7 +24,7 @@ public class RoleController {
     @ApiResponse(responseCode = "404", description = "Role non trouvé")
     @RequestMapping(path = "/{id_role}", method = RequestMethod.GET)
     public Roles get(@PathVariable(name = "id_role") Short id) throws ResourceNotFoundException {
-        return roleService.getUserById(id);
+        return roleService.getRoleById(id);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -36,16 +36,16 @@ public class RoleController {
     @Operation(summary = "Récupération de tous les utilisateurs")
     @RequestMapping(path = "/_all", method = RequestMethod.GET)
     public List<Roles> getAllRoles() {
-        return roleService.getAllUsers();
+        return roleService.getAllRoles();
     }
 
     @RequestMapping(path = "/{id_Roles}", method = RequestMethod.DELETE)
     public void deleteRole(@PathVariable(name = "id_Roles") String rolename) {
-        roleService.deleteUser(rolename);
+        roleService.deleteRole(rolename);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public Page<Roles> getRoles(Pageable pageable) {
-        return roleService.getUsersWithPaging(pageable);
+        return roleService.getRoleWithPaging(pageable);
     }
 }

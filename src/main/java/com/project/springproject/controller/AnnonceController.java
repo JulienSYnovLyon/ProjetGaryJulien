@@ -24,7 +24,7 @@ public class AnnonceController {
     @ApiResponse(responseCode = "404", description = "Annonce non trouvé")
     @RequestMapping(path = "/{id_annonces}", method = RequestMethod.GET)
     public Annonces get(@PathVariable(name = "id_annonces") Long annonce) throws ResourceNotFoundException {
-        return annonceService.getUserById(annonce);
+        return annonceService.getAnnonceById(annonce);
     }
 
     @Operation(summary = "Modification ou ajout d'une annonce")
@@ -35,17 +35,17 @@ public class AnnonceController {
 
     @Operation(summary = "Récupération de toutes les annonces")
     @RequestMapping(path = "/_all", method = RequestMethod.GET)
-    public List<Annonces> getAllUsers() {
-        return annonceService.getAllUsers();
+    public List<Annonces> getAllAnnonces() {
+        return annonceService.getAllAnonces();
     }
 
     @RequestMapping(path = "/{id_annonces}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable(name = "id_annonces") String username) {
-        annonceService.deleteUser(username);
+    public void deleteAnnonce(@PathVariable(name = "id_annonces") String username) {
+        annonceService.deleteAnnonce(username);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<Annonces> getUsers(Pageable pageable) {
-        return annonceService.getUsersWithPaging(pageable);
+    public Page<Annonces> getAnnonces(Pageable pageable) {
+        return annonceService.getAnoncesWithPaging(pageable);
     }
 }
